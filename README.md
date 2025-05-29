@@ -6,7 +6,8 @@
 
 このプロジェクトではNode.jsは使用しません
 BunはNode.jsの代替として使用されます。
-https://bun.sh/
+
+> https://bun.sh/
 
 #### Windowsの場合
 
@@ -43,17 +44,21 @@ bun install
 ### 3. 開発サーバーの起動
 
 ```bash
-bun dev
+bun run dev
 ```
+
+起動すると以下のような画面になります。
+![alt text](<CleanShot 2025-05-29 at 18.37.50@2x.png>)
+ブラウザで `http://localhost:5173` にアクセスすると、アプリケーションが表示されます。
 
 ### 4. ビルド
 
 ```bash
-bun build
+bun run build
 ```
 
 ### 5. テストの実行
 
 ```bash
-bun test
+bun run test
 ```
