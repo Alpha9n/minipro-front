@@ -48,7 +48,7 @@ bun run dev
 ```
 
 起動すると以下のような画面になります。
-![alt text](<CleanShot 2025-05-29 at 18.37.50@2x.png>)
+![alt text](<readme_resource/CleanShot 2025-05-29 at 18.37.50@2x.png>)
 ブラウザで `http://localhost:5173` にアクセスすると、アプリケーションが表示されます。
 
 ### 4. ビルド
