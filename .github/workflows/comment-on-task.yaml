@@ -5,11 +5,12 @@ on:
 jobs:
   create-comment-in-asana-task-job:
     runs-on: ubuntu-latest
-    name: Asanaタスクの作成
+    name: Asanaタスクにコメントを作成
     steps:
       - name: コメントを作成
         uses: Asana/comment-on-task-github-action@latest
         id: createComment
+        continue-on-error: true
         with:
           asana-secret: ${{ secrets.ASANA_SECRET }}
           comment-text: '{{PR_NAME}} is {{PR_STATE}}: {{PR_URL}}'
