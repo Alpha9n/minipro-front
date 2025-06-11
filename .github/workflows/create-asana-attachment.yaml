@@ -1,0 +1,18 @@
+on:
+  pull_request:
+    types: [opened, reopened]
+
+jobs:
+  create-asana-attachment-job:
+    runs-on: ubuntu-latest
+    name: AsanaタスクにPRリンクを追加
+    continue-on-error: true
+    steps:
+      - name: PRリンクの作成
+        uses: Asana/create-app-attachment-github-action@latest
+        id: postAttachment
+        continue-on-error: true
+        with:
+          asana-secret: ${{ secrets.ASANA_SECRET }}
+      - name: ステータスを取得
+        run: echo "ステータス- ${{ steps.postAttachment.outputs.status }}"
