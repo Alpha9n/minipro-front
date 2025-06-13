@@ -56,9 +56,3 @@ bun run dev
 ```bash
 bun run build
 ```
-
-### 5. テストの実行
-
-```bash
-bun run test
-```
