@@ -51,14 +51,17 @@ bun run dev
 ![alt text](<readme_resource/CleanShot 2025-05-29 at 18.37.50@2x.png>)
 ブラウザで `http://localhost:5173` にアクセスすると、アプリケーションが表示されます。
 
+#### Storybookの起動
+
+Storybookはコンポーネントの開発とドキュメンテーションのためのツールです。  
+開発サーバーとは別のターミナルを起動して、以下のコマンドを実行してください。
+
+```bash
+bun run storybook
+```
+
 ### 4. ビルド
 
 ```bash
 bun run build
-```
-
-### 5. テストの実行
-
-```bash
-bun run test
 ```

@@ -1,0 +1,21 @@
+name: Branch Protection Check
+
+on:
+  pull_request:
+    types: [opened, reopened]
+    branches:
+      - main
+
+jobs:
+  branch_protection_check:
+    name: check_to_main
+    runs-on: ubuntu-latest
+    steps:
+      - name: mainブランチへのPRの場合devブランチからのPRか確認
+        run: |
+          if [ "${{ github.event.pull_request.base.ref }}" == "main" ] && [ "${{ github.event.pull_request.head.ref }}" != "dev" ]; then
+            echo "::error:: Pull request not from dev to main branch"
+            exit 1
+          else
+            echo "Pull request from dev to main branch"
+          fi
