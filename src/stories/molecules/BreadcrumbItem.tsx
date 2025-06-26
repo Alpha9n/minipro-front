@@ -1,24 +1,22 @@
-import React from 'react';
+import React, { type JSX, type ReactElement } from 'react';
 
 export interface BreadcrumbItemProps {
   href?: string;
   isCurrent?: boolean;
-  children: React.ReactNode;
 }
 
 export const BreadcrumbItem = ({
-  isCurrent = false,
+  isCurrent = true,
   href,
-  children,
-}: BreadcrumbItemProps) => {
+}: BreadcrumbItemProps): ReactElement => {
   return (
     <li className="breadcrumbItem">
-      {href && isCurrent ? (
-        <a href={href}>
-          <span>{children}</span>
+      {href && !isCurrent ? (
+        <a href={href} aria-current="page">
+          <span></span>
         </a>
       ) : (
-        <span>{children}</span>
+        <span aria-current="page"></span>
       )}
     </li>
   );

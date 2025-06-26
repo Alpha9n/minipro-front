@@ -18,6 +18,11 @@ type Story = StoryObj<typeof meta>;
 
 export const Breadcrumb: Story = {
   args: {
-    children: 'top',
+    children: (
+      <>
+        <BreadcrumbItem isCurrent={false} href="#top" />
+        <BreadcrumbItem isCurrent={true} href="#www" />
+      </>
+    ),
   },
 };

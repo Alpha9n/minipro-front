@@ -17,6 +17,6 @@ type Story = StoryObj<typeof meta>;
 
 export const items: Story = {
   args: {
-    children: 'top',
+    href: '#',
   },
 };
