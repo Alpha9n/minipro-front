@@ -1,5 +1,6 @@
-import { useState } from "react";
-import "./App.css";
+import { useState } from 'react';
+import './App.css';
+import { ExampleButton } from './stories/atoms/ExampleButton';
 
 function App() {
   const [count, setCount] = useState(0);
@@ -7,7 +8,12 @@ function App() {
   return (
     <>
       <p>Hello Counter: {count}</p>
-      <button onClick={() => setCount(count + 1)}>Increment!</button>
+      <ExampleButton
+        label={'Increment!'}
+        onClick={() => setCount(count + 1)}
+        size="large"
+        primary
+      />
     </>
   );
 }
