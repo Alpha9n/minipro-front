@@ -1,0 +1,95 @@
+.custom-button {
+  padding: 10px 20px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 14px;
+  display: inline-block;
+  width: 100%;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.btn--small {
+  font-size: 12px;
+  padding: 6px 12px;
+}
+
+.btn--medium {
+  font-size: 14px;
+  padding: 10px 20px;
+}
+
+.btn--large {
+  font-size: 16px;
+  padding: 14px 28px;
+}
+
+/* バリエーション: solid */
+.btn--solid.btn--green {
+  background-color: #8bc34a;
+  color: white;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.btn--solid.btn--red {
+  background-color: #f44336;
+  color: white;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.btn--solid.btn--orange {
+  background-color: #ff9800;
+  color: white;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.btn--solid.btn--blue {
+  background-color: white;
+  color: #2196f3;
+  border: 2px solid #2196f3;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.btn--solid.btn--gray {
+  background-color: #607d8b;
+  color: white;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.btn--solid.btn--light {
+  background-color: #e6f4d7;
+  color: #ffffff;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.btn--solid.btn--none {
+  background-color: transparent;
+  border: none;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+/* アイコンボタン用調整 */
+.btn--none {
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  font-size: 24px;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.btn--circle {
+  background-color: #0d6bd3;
+  color: white;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  width: 120px;
+  height: 120px;
+  border-radius: 60px;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 18px;
+  line-height: 1.2;
+}
