@@ -1,0 +1,25 @@
+.breadcrumbItem {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  list-style: none;
+}
+
+.breadcrumbItem a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.breadcrumbItem span {
+  color: #666;
+  font-family: Inter;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.breadcrumbItem a span::after {
+}
