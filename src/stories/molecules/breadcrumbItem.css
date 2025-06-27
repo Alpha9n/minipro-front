@@ -1,15 +1,21 @@
 .breadcrumbItem {
   display: inline-flex;
   align-items: center;
-  gap: 10px;
-  /* list-style: none; */
+  /* gap: 10px; */
 }
 
 .breadcrumbItem a {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 10px;
+  /* gap: 10px; */
+  text-decoration: none;
+}
+
+.breadcrumbItem:not(:first-child)::before {
+  content: '>';
+  margin: 0 10px;
+  color: #666;
 }
 
 .breadcrumbItem span {
@@ -18,8 +24,11 @@
   font-size: 16px;
   font-style: normal;
   font-weight: 400;
-  line-height: normal;
+  /* line-height: normal; */
 }
 
-.breadcrumbItem a span {
+.breadcrumbItem a:hover span {
+  padding-bottom: 1px;
+  border-bottom: 1px solid #000;
+  line-height: 1;
 }
