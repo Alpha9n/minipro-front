@@ -1,10 +1,10 @@
 import './breadcrumbList.css';
 // import './breadcrumbItem.css'
 
-import React, { type JSX, type ReactElement } from 'react';
+import React, { type JSX, type ReactElement, type ReactNode } from 'react';
 
 export interface BreadcrumbListProps {
-  children: ReactElement;
+  children: ReactNode;
 }
 
 export const BreadcrumbList = ({ children }: BreadcrumbListProps) => {
@@ -14,7 +14,7 @@ export const BreadcrumbList = ({ children }: BreadcrumbListProps) => {
     <nav className="breadcrumbList" aria-label="パンくずリスト">
       <ol>
         {items.map((item, index) => (
-          <React.Fragment key={index}>{item}</React.Fragment>
+          <li key={index}>{item}</li>
         ))}
       </ol>
     </nav>

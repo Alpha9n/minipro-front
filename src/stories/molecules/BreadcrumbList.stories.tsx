@@ -10,7 +10,6 @@ const meta = {
     layout: 'centered',
   },
   tags: ['autodocs'],
-  args: {},
 } satisfies Meta<typeof BreadcrumbList>;
 
 export default meta;
@@ -20,8 +19,8 @@ export const Breadcrumb: Story = {
   args: {
     children: (
       <>
-        <BreadcrumbItem isCurrent={false} href="#top" />
-        <BreadcrumbItem isCurrent={true} href="#www" />
+        <BreadcrumbItem isCurrent={false} href="#top" children="トップ" />
+        <BreadcrumbItem isCurrent={true} href="#www" children="現在のページ" />
       </>
     ),
   },

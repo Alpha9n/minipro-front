@@ -1,5 +1,5 @@
 .breadcrumbList {
-  display: inline-flex;
+  display: flex;
   width: 100%;
   height: 22px;
   padding: 6px 20px;

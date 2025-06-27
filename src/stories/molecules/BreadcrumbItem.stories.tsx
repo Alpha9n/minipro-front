@@ -8,15 +8,23 @@ const meta = {
   parameters: {
     layout: 'centered',
   },
-  tags: ['autodocs'],
-  args: {},
 } satisfies Meta<typeof BreadcrumbItem>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const items: Story = {
+export const Default: Story = {
   args: {
     href: '#',
+    isCurrent: false,
+    children: 'トップ',
+  },
+};
+
+export const Current: Story = {
+  args: {
+    href: '',
+    isCurrent: true,
+    children: '現在のページ',
   },
 };
