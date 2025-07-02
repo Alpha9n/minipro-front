@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { Checkbox } from './Checkbox';
+import { useArgs } from 'storybook/internal/preview-api';
 
 const meta = {
   title: 'admin/atoms/Checkbox',
@@ -11,22 +12,20 @@ const meta = {
 } satisfies Meta<typeof Checkbox>;
 
 export default meta;
-type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {
-  args: {
-    id: '1',
-    label: 'テキストが必要な場合はここに入ります',
-    checked: false,
-    onChange: (e) => console.log(`Checkbox changed: ${e.target.checked}`),
-  },
+export const Default = () => {
+  const [args, updateArgs] = useArgs();
+  return (
+    <Checkbox
+      id="example"
+      label=""
+      checked={args.checked}
+      onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+        updateArgs({ checked: e.target.checked })
+      }
+    />
+  );
 };
-
-export const Checked: Story = {
-  args: {
-    id: '2',
-    label: 'チェック済みのチェックボックス',
-    checked: true,
-    onChange: (e) => console.log(`Checkbox changed: ${e.target.checked}`),
-  },
+Default.args = {
+  checked: false,
 };
