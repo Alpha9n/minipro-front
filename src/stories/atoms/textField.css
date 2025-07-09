@@ -1,0 +1,46 @@
+.textField {
+  max-width: 475px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 5px;
+}
+
+.textField label {
+  display: flex;
+  align-items: flex-start;
+  gap: 5px;
+  font-weight: bold;
+  color: #000;
+  align-self: stretch;
+}
+
+.required {
+  color: #ff544b;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.textInput {
+  max-width: 475px;
+  width: 100%;
+  display: flex;
+  padding: 13px 16px;
+  align-items: flex-start;
+  align-self: stretch;
+  border-radius: 4px;
+  border: 1px solid #bcc0c8;
+  background: #fff;
+}
+
+.advice {
+  font-size: 14px;
+  color: #ff544b;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  height: 19px;
+  align-self: stretch;
+}
