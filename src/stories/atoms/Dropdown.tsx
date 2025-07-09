@@ -18,7 +18,6 @@ export const Dropdown: React.FC<DropdownProps> = ({
   onChange,
   warningExists = false,
   warningText,
-  withLabel = false,
 }) => {
   const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     onChange?.(event.target.value);
@@ -32,7 +31,12 @@ export const Dropdown: React.FC<DropdownProps> = ({
 
   return (
     <div className="dropdown">
-      {withLabel && label && <label className="dropdownLabel">{label}</label>}
+      {/* ラベル */}
+      <label>
+        {label}
+        {warningExists && <span className="required">*必須</span>}
+      </label>
+      {/* セレクトボックス */}
       <select
         className="dropdownSelect"
         value={selected}
@@ -49,6 +53,8 @@ export const Dropdown: React.FC<DropdownProps> = ({
           ),
         )}
       </select>
+
+      {/* 注意記述欄 */}
       {warningExists && warningText && (
         <span className="dropdownAdvice">{warningText}</span>
       )}
