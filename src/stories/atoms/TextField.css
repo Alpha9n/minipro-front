@@ -1,0 +1,29 @@
+.text-field {
+  margin-bottom: 24px;
+}
+
+.label {
+  display: block;
+  margin-bottom: 4px;
+  font-weight: bold;
+}
+
+.required {
+  color: red;
+  font-weight: normal;
+  margin-left: 4px;
+}
+
+.input {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+.note {
+  color: red;
+  font-size: 12px;
+  margin-top: 4px;
+}
