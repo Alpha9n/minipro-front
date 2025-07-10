@@ -15,5 +15,9 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Primary: Story = {
-  args: {},
+  args: {
+    label: 'テキストエリア',
+    value: 'Valueサンプル',
+    id: 'textarea-example',
+  },
 };

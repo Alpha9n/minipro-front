@@ -1,26 +1,31 @@
 import './textArea.css';
 
 export interface TextAreaProps {
-  /**ラベル */
+  /** テキストエリアのID */
+  id: string;
+  /** ラベル */
   label: string;
-  /**テキストエリアの値 */
+  /** テキストエリアの値 */
   value?: string;
 }
 
 /** Primary UI component for user interaction */
-export const TextArea = ({ label, value }: TextAreaProps) => {
+export const TextArea = ({ label, value, id }: TextAreaProps) => {
   return (
     <div className="textarea">
       <div className="textarea-label-group">
-        <label className="textarea-label">{label}</label>
+        <label className="textarea-label" htmlFor={id}>
+          {label}
+        </label>
         <span className="textarea-required" role="alert">
           *必須
         </span>
       </div>
       <textarea
+        id={id}
         className="textarea-input"
         name="textarea-input"
-        value={value}
+        defaultValue={value}
         required
       />
     </div>
