@@ -22,6 +22,7 @@ export const Default: Story = {
       {
         imageUrl: 'https://via.placeholder.com/640x360?text=完成イメージ3',
       },
+      // TODO: Uncomment this item if additional carousel images are needed in the future.
       // {
       //   imageUrl: 'https://via.placeholder.com/640x360?text=完成イメージ3',
       // },
