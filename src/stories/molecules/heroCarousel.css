@@ -1,0 +1,72 @@
+/* ここで使うべきではないだろうけどずれるんで一旦入れちゃった(*´σｰ｀)ｴﾍﾍ */
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.hero-carousel-container {
+  display: flex;
+  max-width: 960px;
+  width: 100%;
+  margin: 0 auto;
+  text-align: center;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+.carousel-wrapper {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.arrow {
+  background: none;
+  border: none;
+  font-size: 3rem;
+  cursor: pointer;
+  color: #333;
+  z-index: 2;
+}
+
+.carousel-content {
+  display: flex;
+  width: 768px;
+  height: 432px;
+  margin: 10px 75px;
+  justify-content: center;
+  align-items: center;
+  background: #b5a8a8;
+}
+
+.carousel-image {
+  width: 100%;
+  height: auto;
+  background-color: #c1b4b4;
+}
+
+.carousel-dots {
+  margin-top: 12px;
+
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  list-style: none;
+}
+
+.dot {
+  height: 10px;
+  width: 25px;
+  background-color: #bbb;
+  display: inline-block;
+  cursor: pointer;
+  gap: 10px;
+}
+
+.dot.active {
+  background-color: #333;
+}
