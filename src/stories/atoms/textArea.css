@@ -1,0 +1,44 @@
+.textarea-label-group {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  align-self: stretch;
+  font-family: Inter;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  margin-bottom: 5px;
+}
+.textarea-label {
+  color: #000;
+}
+.textarea-required {
+  color: #ff544b;
+}
+.textarea-input {
+  field-sizing: content;
+  /* min-width: 475px; */
+  /* max-width: 600px; */
+  /* min-height: 127px; */
+  box-sizing: border-box;
+  width: 100%;
+  /* display: flex; */
+  /* height: 80px; */
+  padding: 13px 16px;
+  flex-direction: column;
+  align-items: flex-start;
+  align-self: stretch;
+  border-radius: 4px;
+  border: 1px solid #bcc0c8;
+  background: #fff;
+  flex: 1 0 0;
+  color: #292929;
+  font-family: Inter;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  margin: 0;
+  /* resize: vertical; */
+}
