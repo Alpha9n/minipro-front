@@ -1,5 +1,5 @@
-/* ここで使うべきではないだろうけどずれるんで一旦入れちゃった(*´σｰ｀)ｴﾍﾍ */
-* {
+/* Scoped reset for hero-carousel-container */
+.hero-carousel-container, .hero-carousel-container * {
   margin: 0;
   padding: 0;
 }
