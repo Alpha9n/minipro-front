@@ -23,7 +23,7 @@ export const HeroCarousel: React.FC<HeroCarouselProps> = ({ items }) => {
     setCurrentIndex((prev) => (prev + 1) % items.length);
   };
 
-  // バークリックで表示画像を変更
+  // ドットクリックで表示画像を変更
   const goToIndex = (index: number) => setCurrentIndex(index);
 
   return (
