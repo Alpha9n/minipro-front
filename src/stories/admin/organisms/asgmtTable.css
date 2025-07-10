@@ -1,0 +1,75 @@
+.asgmtTable {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.deleteButtonWrapper {
+  min-width: 100px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.deleteButton {
+  background-color: #c62828;
+  color: white;
+  padding: 6px 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.2s ease;
+}
+
+.deleteButton:hover {
+  background-color: #b71c1c;
+}
+
+.asgmtTable th,
+.asgmtTable td {
+  padding: 0.75rem 1rem;
+  border: 1px solid #ddd;
+  text-align: left;
+  vertical-align: middle;
+}
+
+.asgmtTable th {
+  background-color: #f5f5f5;
+  font-weight: 600;
+  color: #333;
+}
+
+.asgmtTable tr:nth-child(even) {
+  background-color: #fafafa;
+}
+
+.asgmtTable tr:hover {
+  background-color: #f0f8ff;
+}
+
+.asgmtTable td:first-child {
+  position: relative;
+  text-align: center;
+  white-space: nowrap;
+  overflow: visible;
+  width: 30px;
+}
+
+.asgmtTable td:last-child {
+  position: relative;
+  text-align: center;
+  white-space: nowrap;
+  overflow: visible;
+  width: 50px;
+}
+
+/* 3点メニュー用セル */
+.asgmtActions {
+  position: relative;
+  text-align: center;
+  white-space: nowrap;
+}

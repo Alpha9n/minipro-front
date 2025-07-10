@@ -1,0 +1,29 @@
+.form-container {
+  margin-bottom: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.form-container input,
+.form-container textarea {
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+}
+
+.form-container button {
+  padding: 10px;
+  background-color: #2e7d32;
+  color: white;
+  border: none;
+  font-size: 16px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.form-container button:disabled {
+  background-color: #aaa;
+  cursor: not-allowed;
+}

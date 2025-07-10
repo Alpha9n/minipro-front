@@ -1,0 +1,64 @@
+/* ページ全体を中央寄せ＆上に余白 */
+.asgmtPageContainer {
+  display: flex;
+  justify-content: center;
+  /* padding: 40px 16px; */
+  box-sizing: border-box;
+  width: 100%;
+}
+
+/* ラッパーで中央揃え */
+.GeneratedAsgmtWrapper {
+  max-width: 800px;
+  width: 100%;
+}
+
+/* AI生成された内容ボックス */
+.GeneratedAsgmt {
+  background-color: #f8f9fa;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 24px;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #333;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  width: 100%;
+}
+
+/* タイトル中央 */
+.GeneratedAsgmt h3 {
+  text-align: center;
+  margin-top: 0;
+  font-size: 20px;
+}
+
+/* 内容テキストは左寄せ */
+.GeneratedAsgmt pre {
+  margin: 0;
+  white-space: pre-wrap;
+  text-align: left;
+}
+
+/* ボタンは右下 */
+.result-buttons {
+  margin-top: 20px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.result-buttons button {
+  padding: 8px 16px;
+  font-size: 15px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  background-color: #ffffff;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.result-buttons button:hover {
+  background-color: #e3f2fd;
+}
