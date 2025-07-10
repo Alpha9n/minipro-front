@@ -1,4 +1,4 @@
-import React, { type JSX, type ReactElement, type ReactNode } from 'react';
+import { type ReactElement, type ReactNode } from 'react';
 
 import './breadcrumbItem.css';
 
