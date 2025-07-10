@@ -26,7 +26,7 @@ export const Locked: Story = {
 
 export const Unlocked: Story = {
   args: {
-    img: 'aa',
+    img: 'https://via.placeholder.com/150',
     title: 'とても長いカードのタイトル',
     content:
       '概要はこのように表示されます。長い文章も入力できます。とても長い文章ではこのような表示のされ方になります',
