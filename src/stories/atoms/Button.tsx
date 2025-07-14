@@ -15,6 +15,7 @@ export interface ButtonProps {
     | 'none'
     | 'blue_';
   shape?: 'default' | 'circle';
+  disabled?: boolean;
 }
 
 export const Button = ({

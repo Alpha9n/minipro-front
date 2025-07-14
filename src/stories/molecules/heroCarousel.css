@@ -1,5 +1,6 @@
 /* Scoped reset for hero-carousel-container */
-.hero-carousel-container, .hero-carousel-container * {
+.hero-carousel-container,
+.hero-carousel-container * {
   margin: 0;
   padding: 0;
 }
