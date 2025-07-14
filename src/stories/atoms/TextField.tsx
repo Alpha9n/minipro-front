@@ -1,6 +1,5 @@
 import React from 'react';
-import './TextField.css'; // Assuming you have a CSS file for styling
-
+import './textField.css';
 export interface TextFieldProps {
   label?: string;
   placeholder?: string;

@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import './TableMoreActions.css';
+import './tableMoreActions.css';
 import { MenuButton } from '../atoms/MenuButton';
 import { createPortal } from 'react-dom';
 

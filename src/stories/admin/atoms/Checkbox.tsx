@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './checkbox.css';
 
 export interface CheckboxProps {
   id: string;
