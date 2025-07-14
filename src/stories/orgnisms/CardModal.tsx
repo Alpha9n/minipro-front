@@ -19,7 +19,7 @@ export const CardModal: React.FC<ModalProps> = ({
       <div className="card-modal-content" onClick={(e) => e.stopPropagation()}>
         {children}
         <button className="card-modal-close" onClick={onClose}>
-          Close
+          ✕
         </button>
       </div>
     </div>

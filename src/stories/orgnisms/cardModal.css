@@ -1,32 +1,57 @@
-.modal-overlay {
-  position: fixed; /* 画面に固定 */
+.card-modal-overlay {
+  position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-color: rgba(0, 0, 0, 0.5); /* 半透明の背景 */
+  background-color: rgba(0, 0, 0, 0.5);
   display: flex;
-  justify-content: center; /* 横中央 */
-  align-items: center; /* 縦中央 */
-  z-index: 1000; /* 他の要素より前面に */
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
 }
 
-.modal-content {
-  background-color: #fff;
-  border-radius: 10px;
-  padding: 30px;
-  max-width: 500px;
-  width: 90%;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+.card-modal-content {
+  background-color: #ffffff;
+  width: 800px;
+  max-width: 95%;
+  max-height: 85vh;
+  overflow-y: auto;
+  border-radius: 6px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+  padding: 20px 30px;
   position: relative;
+  animation: fadeInModal 0.3s ease-out;
 }
 
-.modal-close {
+/* スクロールバー非表示 */
+.card-modal-content::-webkit-scrollbar {
+  display: none;
+}
+
+.card-modal-content {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.card-modal-close {
   position: absolute;
-  top: 10px;
-  right: 12px;
+  top: 15px;
+  right: 20px;
   background: none;
   border: none;
-  font-size: 20px;
+  font-size: 28px;
   cursor: pointer;
+}
+
+/* アニメーション */
+@keyframes fadeInModal {
+  0% {
+    transform: scale(0.95);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
 }

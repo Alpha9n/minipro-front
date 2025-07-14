@@ -3,13 +3,16 @@ import { useState, useEffect } from 'react';
 import { Card } from '../stories/molecules/Card';
 import '../styles/topPage.css';
 import { CardModal } from '../stories/orgnisms/CardModal';
+import { StepList } from '../stories/molecules/StepList';
 
 export interface ProjectProps {
-  id: number;
-  title: string;
-  imageUrl: string;
-  desc: string;
-  alert: string;
+  id: number; // id
+  title: string; // タイトル
+  imageUrl: string; // 画像
+  desc: string; // 概要
+  alert: string; // 挑戦不可メッセージ
+  language: string; // 言語
+  material: string; // 受講教材
 }
 
 export const TopPage = ({}) => {
@@ -66,6 +69,8 @@ export const TopPage = ({}) => {
         title: 'React × TypeScript チャレンジ',
         desc: 'ReactとTypeScriptを使ってTodoアプリを構築する課題です。',
         alert: '',
+        language: 'React, TypeScript',
+        material: 'React入門：ToDoアプリを作ってみよう',
       },
       {
         id: 2,
@@ -73,6 +78,8 @@ export const TopPage = ({}) => {
         title: 'UIデザイン模写チャレンジ',
         desc: 'Figmaデザインを元に、HTML/CSSでコーディングしてください。',
         alert: '',
+        language: 'HTML, CSS',
+        material: 'Webデザイン基礎：Figma模写実践',
       },
     ];
 
@@ -83,6 +90,8 @@ export const TopPage = ({}) => {
         title: 'グループ開発：シフト管理アプリ',
         desc: 'バイトの希望シフト提出〜LINE通知までを管理するアプリ。',
         alert: '',
+        language: 'React, Node.js, MySQL',
+        material: 'チーム開発実践：フルスタックアプリ構築',
       },
       {
         id: 4,
@@ -90,6 +99,8 @@ export const TopPage = ({}) => {
         title: 'カレンダーアプリ',
         desc: '予定の追加・削除ができるフロントエンドアプリケーション。',
         alert: '',
+        language: 'Vue, JavaScript',
+        material: 'Vue基礎：日程管理アプリを作ろう',
       },
     ];
 
@@ -102,6 +113,8 @@ export const TopPage = ({}) => {
         title: 'AI API活用チャレンジ',
         desc: 'OpenAIのAPIを使ってチャットボットを作成する課題です。',
         alert: '前提スキルチェック未達成',
+        language: 'JavaScript, OpenAI API',
+        material: 'AI API活用：チャットボット入門',
       },
       {
         id: 6,
@@ -109,6 +122,8 @@ export const TopPage = ({}) => {
         title: 'データベース設計入門',
         desc: 'ER図からMySQLのテーブル設計を学ぶ基礎課題です。',
         alert: '前提スキルチェック未達成',
+        language: 'SQL, MySQL',
+        material: 'データベース基礎：設計から実装まで',
       },
     ];
 
@@ -215,22 +230,41 @@ export const TopPage = ({}) => {
       </main>
 
       {/* モーダル表示 */}
-      {isModalOpen && selectedProject && (
-        <CardModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
-          <div className="modal">
+      <div className="modal">
+        {isModalOpen && selectedProject && (
+          <CardModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
             <h2>{selectedProject.title}</h2>
-            <img
-              src={selectedProject.imageUrl}
-              alt={selectedProject.title}
-              style={{ width: '100%', maxHeight: 200, objectFit: 'cover' }}
-            />
-            <p>{selectedProject.desc}</p>
+            {/* モーダルの上部 */}
+            <div className="modal-content">
+              {/* 左の画像部分 */}
+              <div className="modal-left">
+                <img
+                  src={selectedProject.imageUrl}
+                  alt={selectedProject.title}
+                />
+              </div>
+              <div className="modal-right">
+                <p>{selectedProject.desc}</p>
+                <dl>
+                  <strong>使用言語</strong>
+                  {selectedProject.language}
+                </dl>
+                <dl>
+                  <strong>受講講義</strong>
+                  {selectedProject.material}
+                </dl>
+              </div>
+            </div>
             {selectedProject.alert && (
               <p style={{ color: 'red' }}>{selectedProject.alert}</p>
             )}
-          </div>
-        </CardModal>
-      )}
+            {/* ステップリスト表示位置 */}
+            <div className="step-section">
+              <StepList />
+            </div>
+          </CardModal>
+        )}
+      </div>
     </div>
   );
 };
