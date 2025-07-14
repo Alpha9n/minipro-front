@@ -15,7 +15,7 @@ export interface ProjectProps {
   material: string; // 受講教材
 }
 
-export const TopPage = ({}) => {
+export const TopPage = () => {
   const [challengeProjects, setChallengeProjects] = useState<ProjectProps[]>(
     [],
   );
@@ -243,6 +243,7 @@ export const TopPage = ({}) => {
                   alt={selectedProject.title}
                 />
               </div>
+              {/* 右側コンテンツ */}
               <div className="modal-right">
                 <p>{selectedProject.desc}</p>
                 <dl>
@@ -255,6 +256,7 @@ export const TopPage = ({}) => {
                 </dl>
               </div>
             </div>
+            {/* 未受講の場合の表示メッセージ */}
             {selectedProject.alert && (
               <p style={{ color: 'red' }}>{selectedProject.alert}</p>
             )}
