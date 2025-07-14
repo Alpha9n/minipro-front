@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './detailMordal.css';
+import './detailModal.css';
 
 export interface ItemDetail {
   label: string;
@@ -15,7 +15,7 @@ export interface DetailProps {
   onClose: () => void;
 }
 
-export const DetailMordal: React.FC<DetailProps> = ({
+export const DetailModal: React.FC<DetailProps> = ({
   title,
   asgmtInfo,
   withAnker,
@@ -30,7 +30,7 @@ export const DetailMordal: React.FC<DetailProps> = ({
         <ul>
           {asgmtInfo.map((item, index) => (
             <li key={index}>
-              <label>{item.label}</label>: <span>{item.col}</span>
+              <label>{item.label}</label> <span>{item.col}</span>
             </li>
           ))}
         </ul>

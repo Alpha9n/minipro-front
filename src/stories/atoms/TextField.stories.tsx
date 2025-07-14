@@ -20,6 +20,10 @@ export const Text: Story = {
     type: 'text',
     required: true,
     advice: '*注意はここに記述します。',
+    value: '',
+    onChange: () => {
+      console.log('submitted');
+    },
   },
 };
 
@@ -30,6 +34,10 @@ export const email: Story = {
     type: 'email',
     required: true,
     advice: '*注意はここに記述します。',
+    value: '',
+    onChange: () => {
+      console.log('submitted');
+    },
   },
 };
 
@@ -40,5 +48,9 @@ export const password: Story = {
     type: 'password',
     required: true,
     advice: '*注意はここに記述します。',
+    value: '',
+    onChange: () => {
+      console.log('submitted');
+    },
   },
 };

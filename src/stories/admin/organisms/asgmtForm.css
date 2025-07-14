@@ -3,6 +3,8 @@
   display: flex;
   flex-direction: column;
   gap: 12px;
+  width: 500px;
+  margin: 0 auto;
 }
 
 .form-container input,

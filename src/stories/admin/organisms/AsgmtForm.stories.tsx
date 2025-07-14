@@ -15,7 +15,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    onGenerate: (data) => {
+    onSubmit: (data) => {
       console.log('Form submitted:', data);
     },
   },

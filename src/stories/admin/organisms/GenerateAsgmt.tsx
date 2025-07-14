@@ -5,7 +5,7 @@ interface Props {
   result: string;
   onSave: () => void;
   onRegenerate: () => void;
-  loading: boolean;
+  loading?: boolean;
 }
 
 export const GenerateAsgmt: React.FC<Props> = ({

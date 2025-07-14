@@ -2,9 +2,10 @@ import React, { useState } from 'react';
 import { TableHeader } from '../molecules/TableHeader';
 import { Checkbox } from '../atoms/Checkbox';
 import { TableMoreActions } from '../molecules/TableMoreActions';
-import { DetailMordal } from '../molecules/DetailMordal';
+import { DetailModal } from './DetailModal';
 import './asgmtTable.css';
 import { useNavigate } from 'react-router-dom';
+import { Pagination } from './Pagination';
 
 export type Assignments = {
   id: number;
@@ -17,11 +18,51 @@ export interface AssignmentTableProps {
   assignments: Assignments[];
 }
 
+const ITEMS_PER_PAGE = 10;
+
 export const AsgmtTable: React.FC<AssignmentTableProps> = ({ assignments }) => {
   const [selectedIds, setSelectedIds] = useState<number[]>([]);
   const [selectedAsgmt, setSelectedAsgmt] = useState<Assignments | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
   const navigate = useNavigate();
+
+  // ソート状態
+  const [sortKey, setSortKey] = useState<keyof Assignments | null>(null);
+  const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('asc');
+
+  const handleSort = (key: keyof Assignments) => {
+    if (sortKey === key) {
+      setSortOrder((prev) => (prev === 'asc' ? 'desc' : 'asc'));
+    } else {
+      setSortKey(key);
+      setSortOrder('asc');
+    }
+    setCurrentPage(1); // ソート時にページをリセット
+  };
+
+  // ソート処理
+  const sortedAssignments = [...assignments].sort((a, b) => {
+    if (!sortKey) return 0;
+    const valA = a[sortKey]?.toString().toLowerCase() ?? '';
+    const valB = b[sortKey]?.toString().toLowerCase() ?? '';
+    if (valA < valB) return sortOrder === 'asc' ? -1 : 1;
+    if (valA > valB) return sortOrder === 'asc' ? 1 : -1;
+    return 0;
+  });
+
+  // ページング
+  const indexOfLastItem = currentPage * ITEMS_PER_PAGE;
+  const indexOfFirstItem = indexOfLastItem - ITEMS_PER_PAGE;
+  const currentAssignments = sortedAssignments.slice(
+    indexOfFirstItem,
+    indexOfLastItem,
+  );
+  const totalPages = Math.ceil(assignments.length / ITEMS_PER_PAGE);
+
+  const handlePageChange = (page: number) => {
+    setCurrentPage(page);
+  };
 
   // 行クリックでモーダル表示
   const handleRowClick = (assignment: Assignments) => {
@@ -63,16 +104,14 @@ export const AsgmtTable: React.FC<AssignmentTableProps> = ({ assignments }) => {
     setSelectedAsgmt(null);
   };
 
-  const handleDeleteClick = () => {
-    // 個別削除処理
+  const handleEditClick = (id: number) => {
+    navigate(`/edit/${id}`);
   };
-
-  const handleDetailClick = () => {
-    navigate('/admin/asgmt/detail');
+  const handleDeleteClick = (id: number) => {
+    console.log('削除:', id);
   };
-
-  const handleEditClick = () => {
-    navigate('/edit');
+  const handleDetailClick = (id: number) => {
+    navigate(`/admin/asgmt/detail/${id}`);
   };
 
   // モーダル表示用データ変換
@@ -81,6 +120,11 @@ export const AsgmtTable: React.FC<AssignmentTableProps> = ({ assignments }) => {
     { label: '技術スタック', col: assignment.technologyStack },
     { label: '概要', col: assignment.description },
   ];
+
+  console.log(
+    'assignment IDs:',
+    assignments.map((a) => a.id),
+  );
 
   return (
     <>
@@ -97,10 +141,20 @@ export const AsgmtTable: React.FC<AssignmentTableProps> = ({ assignments }) => {
 
       <table className="asgmtTable">
         <TableHeader
-          headers={['', 'テーマ', '技術スタック', '概要', 'Actions']}
+          headers={[
+            { label: '', key: undefined },
+            { label: 'テーマ', key: 'theme' },
+            { label: '技術スタック', key: 'technologyStack' },
+            { label: '概要', key: 'description' },
+            { label: 'Actions', key: undefined },
+          ]}
+          sortKey={sortKey}
+          sortOrder={sortOrder}
+          onSort={handleSort}
         />
+
         <tbody>
-          {assignments.map((assignment) => (
+          {currentAssignments.map((assignment) => (
             <tr key={assignment.id} onClick={() => handleRowClick(assignment)}>
               <td onClick={(e) => handleCheckboxClick(e, assignment)}>
                 <Checkbox
@@ -110,16 +164,16 @@ export const AsgmtTable: React.FC<AssignmentTableProps> = ({ assignments }) => {
                   onChange={() => {}}
                 />
               </td>
-              <td>{assignment.theme}</td>
-              <td>{assignment.technologyStack}</td>
-              <td>{assignment.description}</td>
+              <td width={'200px'}>{assignment.theme}</td>
+              <td width={'100px'}>{assignment.technologyStack}</td>
+              <td width={'400px'}>{assignment.description}</td>
               <td
                 className="asgmtActions"
                 onClick={(e) => handleActionsClick(e)}>
                 <TableMoreActions
-                  onEdit={handleEditClick}
-                  onDelete={handleDeleteClick}
-                  onDetail={handleDetailClick}
+                  onEdit={() => handleEditClick(assignment.id)}
+                  onDelete={() => handleDeleteClick(assignment.id)}
+                  onDetail={() => handleDetailClick(assignment.id)}
                 />
               </td>
             </tr>
@@ -127,13 +181,20 @@ export const AsgmtTable: React.FC<AssignmentTableProps> = ({ assignments }) => {
         </tbody>
       </table>
 
+      {/* Pagination */}
+      <Pagination
+        currentPage={currentPage}
+        totalPages={totalPages}
+        onPageChange={handlePageChange}
+      />
+
       {/* モーダル */}
       {isModalOpen && selectedAsgmt && (
         <div className="modal">
-          <DetailMordal
+          <DetailModal
             title="課題詳細"
             asgmtInfo={getModalData(selectedAsgmt)}
-            withAnker={true}
+            withAnker={false}
             onClose={handleModalClose}
           />
         </div>

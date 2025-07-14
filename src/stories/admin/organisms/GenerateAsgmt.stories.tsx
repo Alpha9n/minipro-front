@@ -17,6 +17,6 @@ export const Default: Story = {
   args: {
     result: 'aaaaaaaaa',
     onSave: () => console.log('Menu clicked'),
-    onRetry: () => console.log('Menu clicked'),
+    onRegenerate: () => console.log('Menu clicked'),
   },
 };

@@ -4,7 +4,7 @@ import { TableMoreActions } from '../molecules/TableMoreActions';
 import { Checkbox } from '../atoms/Checkbox';
 import './userTable.css';
 import { useNavigate } from 'react-router-dom';
-import { DetailMordal } from '../molecules/DetailMordal';
+import { DetailModal } from './DetailModal';
 
 export type User = {
   id: number;
@@ -21,6 +21,19 @@ export const UserTable: React.FC<UserTableProps> = ({ users }) => {
   const [selectedUser, setSelectedUser] = useState<User | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const navigate = useNavigate();
+
+  // ソート処理
+  const [sortKey, setSortKey] = useState<keyof User | null>(null);
+  const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('asc');
+
+  const handleSort = (key: keyof User) => {
+    if (sortKey === key) {
+      setSortOrder((prev) => (prev === 'asc' ? 'desc' : 'asc'));
+    } else {
+      setSortKey(key);
+      setSortOrder('asc');
+    }
+  };
 
   const handleRowClick = (users: User) => {
     console.log('click Table Row', users);
@@ -92,8 +105,18 @@ export const UserTable: React.FC<UserTableProps> = ({ users }) => {
       </div>
       <table className="userTable">
         <TableHeader
-          headers={['', 'ID', '名前', 'メールアドレス', 'Actions']}
+          headers={[
+            { label: '', key: undefined }, // チェックボックス列
+            { label: 'ID', key: 'id' },
+            { label: '名前', key: 'name' },
+            { label: 'メールアドレス', key: 'email' },
+            { label: 'Actions', key: undefined },
+          ]}
+          sortKey={sortKey}
+          sortOrder={sortOrder}
+          onSort={handleSort}
         />
+
         <tbody>
           {users.map((user) => (
             <tr
@@ -127,7 +150,7 @@ export const UserTable: React.FC<UserTableProps> = ({ users }) => {
       {/* モーダル */}
       {isModalOpen && selectedUser && (
         <div className="modal">
-          <DetailMordal
+          <DetailModal
             title="課題詳細"
             asgmtInfo={getModalData(selectedUser)}
             withAnker={false}

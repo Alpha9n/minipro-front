@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import './asgmtForm.css';
+import { TextField } from '../../atoms/TextField';
+import { MultiSelectDropdown } from '../molecules/MultiSelectDropdown';
 
 export interface FormInput {
   theme: string;
@@ -13,6 +15,16 @@ interface Props {
   loading?: boolean;
 }
 
+const languageOptions = [
+  'JavaScript',
+  'TypeScript',
+  'Python',
+  'Go',
+  'Java',
+  'C#',
+  'Ruby',
+];
+
 export const AsgmtForm: React.FC<Props> = ({ onSubmit, loading = false }) => {
   const [form, setForm] = useState<FormInput>({
     theme: '',
@@ -21,6 +33,8 @@ export const AsgmtForm: React.FC<Props> = ({ onSubmit, loading = false }) => {
     extra: '',
   });
 
+  const [selectedLanguages, setSelectedLanguages] = useState<string[]>([]);
+
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
@@ -28,24 +42,29 @@ export const AsgmtForm: React.FC<Props> = ({ onSubmit, loading = false }) => {
   };
 
   const handleSubmit = () => {
-    onSubmit(form);
+    // techStack をカンマ区切りの文字列に変換して送信
+    const updatedForm = {
+      ...form,
+      techStack: selectedLanguages.join(', '),
+    };
+    onSubmit(updatedForm);
   };
 
   return (
     <div className="form-container" style={{ marginBottom: 30 }}>
-      <input
-        name="theme"
-        placeholder="テーマ"
+      <TextField
+        label="タイトル"
+        placeholder="タイトル"
+        type="text"
+        required
         value={form.theme}
         onChange={handleChange}
-        style={{ display: 'block', width: '100%', marginBottom: 10 }}
       />
-      <input
-        name="techStack"
-        placeholder="技術スタック"
-        value={form.techStack}
-        onChange={handleChange}
-        style={{ display: 'block', width: '100%', marginBottom: 10 }}
+      <MultiSelectDropdown
+        label="使用言語"
+        options={languageOptions}
+        selected={selectedLanguages}
+        onChange={setSelectedLanguages}
       />
       <textarea
         name="overview"
@@ -58,13 +77,6 @@ export const AsgmtForm: React.FC<Props> = ({ onSubmit, loading = false }) => {
           height: 80,
           marginBottom: 10,
         }}
-      />
-      <input
-        name="extra"
-        placeholder="難易度・対象者など（任意）"
-        value={form.extra}
-        onChange={handleChange}
-        style={{ display: 'block', width: '100%', marginBottom: 10 }}
       />
       <button onClick={handleSubmit} disabled={loading}>
         {loading ? '生成中...' : '課題を生成'}

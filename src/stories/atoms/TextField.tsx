@@ -7,6 +7,10 @@ export interface TextFieldProps {
   type?: 'text' | 'email' | 'password';
   required: boolean;
   advice?: string;
+  value?: string;
+  onChange: (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => void;
 }
 
 export const TextField: React.FC<TextFieldProps> = ({
@@ -15,6 +19,8 @@ export const TextField: React.FC<TextFieldProps> = ({
   type,
   advice,
   placeholder,
+  value,
+  onChange,
 }) => {
   return (
     <div className="textField">
@@ -27,6 +33,8 @@ export const TextField: React.FC<TextFieldProps> = ({
         className="textInput"
         placeholder={placeholder}
         required={required}
+        value={value}
+        onChange={onChange}
       />
       {required && <span className="advice">{advice}</span>}
     </div>
