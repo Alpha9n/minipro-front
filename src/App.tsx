@@ -1,20 +1,19 @@
 import { useState } from 'react';
 import './App.css';
-import { ExampleButton } from './stories/atoms/ExampleButton';
+import { Button } from './stories/atoms/Button';
+import { StepList } from './stories/molecules/StepList';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import TopPage from './pages/TopPage';
 
 function App() {
   const [count, setCount] = useState(0);
 
   return (
-    <>
-      <p>Hello Counter: {count}</p>
-      <ExampleButton
-        label={'Increment!'}
-        onClick={() => setCount(count + 1)}
-        size="large"
-        primary
-      />
-    </>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/pages" element={<TopPage />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
