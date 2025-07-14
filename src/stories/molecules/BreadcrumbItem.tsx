@@ -15,7 +15,7 @@ export const BreadcrumbItem = ({
 }: BreadcrumbItemProps): ReactElement => {
   return (
     <li className="breadcrumbItem">
-      {(href && !isCurrent) ? (
+      {href && !isCurrent ? (
         <a href={href}>
           <span>{children}</span>
         </a>
