@@ -73,8 +73,8 @@ export const AsgmtForm: React.FC<Props> = ({ onSubmit, loading = false }) => {
         id="overview"
         label="概要"
         value={form.overview}
-        name="overview"
-        onChange={handleChange}
+        // name="overview"
+        // onChange={handleChange}
       />
 
       <Button
