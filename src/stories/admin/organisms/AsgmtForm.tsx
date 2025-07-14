@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import './asgmtForm.css';
 import { TextField } from '../../atoms/TextField';
 import { MultiSelectDropdown } from '../molecules/MultiSelectDropdown';
+import { TextArea } from '../../atoms/TextArea';
 
 export interface FormInput {
   theme: string;
@@ -66,18 +67,9 @@ export const AsgmtForm: React.FC<Props> = ({ onSubmit, loading = false }) => {
         selected={selectedLanguages}
         onChange={setSelectedLanguages}
       />
-      <textarea
-        name="overview"
-        placeholder="概要"
-        value={form.overview}
-        onChange={handleChange}
-        style={{
-          display: 'block',
-          width: '100%',
-          height: 80,
-          marginBottom: 10,
-        }}
-      />
+
+      <TextArea id="overview" label="概要" value={form.overview} />
+
       <button onClick={handleSubmit} disabled={loading}>
         {loading ? '生成中...' : '課題を生成'}
       </button>
