@@ -1,30 +1,41 @@
-import type { Meta, StoryObj } from '@storybook/react-vite';
+import { useState } from 'react';
+import type { Meta, StoryObj } from '@storybook/react';
 import { Dropdown } from './Dropdown';
 
-const meta = {
-  title: 'atoms/Dropdown',
+const meta: Meta<typeof Dropdown> = {
+  title: 'Atoms/Dropdown',
   component: Dropdown,
-  parameters: {
-    layout: 'centered',
-  },
   tags: ['autodocs'],
-} satisfies Meta<typeof Dropdown>;
+};
 
 export default meta;
-type Story = StoryObj<typeof meta>;
+type Story = StoryObj<typeof Dropdown>;
 
+// 状態付き Story
 export const Default: Story = {
+  render: (args) => {
+    const [selectedValue, setSelectedValue] = useState(args.selected || '');
+
+    return (
+      <Dropdown
+        {...args}
+        selected={selectedValue}
+        onChange={(value) => {
+          setSelectedValue(value);
+          args.onChange?.(value);
+        }}
+      />
+    );
+  },
   args: {
-    label: 'label',
+    label: 'Label',
     options: [
-      { value: 'option1', label: 'オプション1' },
-      { value: 'option2', label: 'オプション2' },
-      { value: 'option3', label: 'オプション3' },
+      { value: 'apple', label: 'りんご' },
+      { value: 'banana', label: 'バナナ' },
+      { value: 'orange', label: 'オレンジ' },
     ],
-    selected: 'option1',
+    selected: 'banana',
     warningExists: true,
-    warningText: '*注意はここに',
-    withLabel: true,
-    onChange: (value) => console.log('選択された値:', value),
+    warningText: '注意事項はここに記述する',
   },
 };

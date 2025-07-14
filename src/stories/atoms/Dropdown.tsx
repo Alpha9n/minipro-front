@@ -8,7 +8,6 @@ export interface DropdownProps {
   onChange?: (value: string) => void;
   warningExists?: boolean;
   warningText?: string;
-  withLabel?: boolean;
 }
 
 export const Dropdown: React.FC<DropdownProps> = ({
@@ -56,7 +55,7 @@ export const Dropdown: React.FC<DropdownProps> = ({
 
       {/* 注意記述欄 */}
       {warningExists && warningText && (
-        <span className="dropdownAdvice">{warningText}</span>
+        <span className="warningText">*{warningText}</span>
       )}
     </div>
   );
