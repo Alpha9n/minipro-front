@@ -12,7 +12,7 @@
 
 .breadcrumbList ol {
   display: flex;
-  width: 1324px;
+  max-width: 100%;
   align-items: center;
   list-style: none;
 }

@@ -1,14 +1,12 @@
 .breadcrumbItem {
   display: inline-flex;
   align-items: center;
-  /* gap: 10px; */
 }
 
 .breadcrumbItem a {
   display: flex;
   justify-content: center;
   align-items: center;
-  /* gap: 10px; */
   text-decoration: none;
 }
 
@@ -24,7 +22,6 @@
   font-size: 16px;
   font-style: normal;
   font-weight: 400;
-  /* line-height: normal; */
 }
 
 .breadcrumbItem a:hover span {

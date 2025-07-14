@@ -1,7 +1,6 @@
 import './breadcrumbList.css';
-// import './breadcrumbItem.css'
 
-import React, { type JSX, type ReactElement, type ReactNode } from 'react';
+import React, { type ReactNode } from 'react';
 
 export interface BreadcrumbListProps {
   children: ReactNode;
