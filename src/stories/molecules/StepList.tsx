@@ -49,7 +49,7 @@ export const StepList: React.FC = () => {
           </div>
           <div className={`white-scale ${step.active ? '' : 'outline'}`}>
             <Button
-              label="作 成"
+              label="作成"
               color="green"
               variant={step.active ? 'solid' : 'outline'}
               onClick={() => console.log(`STEP${step.number} clicked`)}
