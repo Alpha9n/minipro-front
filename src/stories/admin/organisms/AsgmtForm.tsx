@@ -3,6 +3,7 @@ import './asgmtForm.css';
 import { TextField } from '../../atoms/TextField';
 import { MultiSelectDropdown } from '../molecules/MultiSelectDropdown';
 import { TextArea } from '../../atoms/TextArea';
+import { Button } from '../../atoms/Button';
 
 export interface FormInput {
   theme: string;
@@ -57,7 +58,7 @@ export const AsgmtForm: React.FC<Props> = ({ onSubmit, loading = false }) => {
         label="タイトル"
         placeholder="タイトル"
         type="text"
-        required
+        required={false}
         value={form.theme}
         onChange={handleChange}
       />
@@ -70,9 +71,11 @@ export const AsgmtForm: React.FC<Props> = ({ onSubmit, loading = false }) => {
 
       <TextArea id="overview" label="概要" value={form.overview} />
 
-      <button onClick={handleSubmit} disabled={loading}>
-        {loading ? '生成中...' : '課題を生成'}
-      </button>
+      <Button
+        label={loading ? '生成中...' : '課題を生成'}
+        onClick={handleSubmit}
+        disabled={loading}
+      />
     </div>
   );
 };

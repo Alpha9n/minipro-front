@@ -7,22 +7,8 @@
   margin: 0 auto;
 }
 
-.form-container input,
-.form-container textarea {
-  padding: 10px;
-  font-size: 16px;
-  border: 1px solid #ddd;
-  border-radius: 6px;
-}
-
-.form-container button {
-  padding: 10px;
-  background-color: #2e7d32;
-  color: white;
-  border: none;
-  font-size: 16px;
-  border-radius: 6px;
-  cursor: pointer;
+#overview {
+  width: 100%;
 }
 
 .form-container button:disabled {

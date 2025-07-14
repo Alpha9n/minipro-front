@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import { TableHeader } from '../molecules/TableHeader';
-import { TableMoreActions } from '../molecules/TableMoreActions';
 import { Checkbox } from '../atoms/Checkbox';
+import { TableMoreActions } from '../molecules/TableMoreActions';
+import { DetailModal } from './DetailModal';
 import './userTable.css';
 import { useNavigate } from 'react-router-dom';
-import { DetailModal } from './DetailModal';
+import { Pagination } from './Pagination';
+import { Button } from '../../atoms/Button';
 
 export type User = {
   id: number;
@@ -16,13 +18,16 @@ export interface UserTableProps {
   users: User[];
 }
 
+const ITEMS_PER_PAGE = 10;
+
 export const UserTable: React.FC<UserTableProps> = ({ users }) => {
   const [selectedIds, setSelectedIds] = useState<number[]>([]);
   const [selectedUser, setSelectedUser] = useState<User | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
   const navigate = useNavigate();
 
-  // ソート処理
+  // ソート状態
   const [sortKey, setSortKey] = useState<keyof User | null>(null);
   const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('asc');
 
@@ -33,14 +38,36 @@ export const UserTable: React.FC<UserTableProps> = ({ users }) => {
       setSortKey(key);
       setSortOrder('asc');
     }
+    setCurrentPage(1); // ソート時にページをリセット
   };
 
-  const handleRowClick = (users: User) => {
-    console.log('click Table Row', users);
-    setSelectedUser(users);
+  // ソート処理
+  const sortedusers = [...users].sort((a, b) => {
+    if (!sortKey) return 0;
+    const valA = a[sortKey]?.toString().toLowerCase() ?? '';
+    const valB = b[sortKey]?.toString().toLowerCase() ?? '';
+    if (valA < valB) return sortOrder === 'asc' ? -1 : 1;
+    if (valA > valB) return sortOrder === 'asc' ? 1 : -1;
+    return 0;
+  });
+
+  // ページング
+  const indexOfLastItem = currentPage * ITEMS_PER_PAGE;
+  const indexOfFirstItem = indexOfLastItem - ITEMS_PER_PAGE;
+  const currentusers = sortedusers.slice(indexOfFirstItem, indexOfLastItem);
+  const totalPages = Math.ceil(users.length / ITEMS_PER_PAGE);
+
+  const handlePageChange = (page: number) => {
+    setCurrentPage(page);
+  };
+
+  // 行クリックでモーダル表示
+  const handleRowClick = (user: User) => {
+    setSelectedUser(user);
     setIsModalOpen(true);
   };
 
+  // チェックボックスクリック時
   const handleCheckboxClick = (
     event: React.MouseEvent<HTMLTableCellElement, MouseEvent>,
     user: User,
@@ -53,6 +80,7 @@ export const UserTable: React.FC<UserTableProps> = ({ users }) => {
     );
   };
 
+  // Actionsエリアクリック時（RowClickを止める）
   const handleActionsClick = (
     event: React.MouseEvent<HTMLTableCellElement, MouseEvent>,
   ) => {
@@ -73,41 +101,46 @@ export const UserTable: React.FC<UserTableProps> = ({ users }) => {
     setSelectedUser(null);
   };
 
-  const handleDeleteClick = () => {
-    // 個別削除処理
+  const handleEditClick = (id: number) => {
+    navigate(`/edit/${id}`);
+  };
+  const handleDeleteClick = (id: number) => {
+    console.log('削除:', id);
+  };
+  const handleDetailClick = (id: number) => {
+    navigate(`/admin/User/detail/${id}`);
   };
 
-  const handleDetailClick = () => {
-    navigate('/admin/user/detail');
-  };
-
-  const handleEditClick = () => {
-    navigate('/admin/user/edit');
-  };
-
+  // モーダル表示用データ変換
   const getModalData = (user: User) => [
+    { label: 'id', col: user.id },
     { label: '名前', col: user.name },
-    { label: 'メールアドレス', col: user.email },
-    // { label: "概要", col: assignment.description },
+    { label: 'メール', col: user.email },
   ];
+
+  console.log(
+    'user IDs:',
+    users.map((a) => a.id),
+  );
 
   return (
     <>
       <div className="deleteButtonWrapper">
         {selectedIds.length > 0 && (
-          <button
-            className="deleteButton"
-            style={{ height: '50px', visibility: 'visible' }}
-            onClick={handleSelectedDelete}>
-            DELETE
-          </button>
+          <Button
+            label="Delete"
+            color="red"
+            size="medium"
+            onClick={() => handleSelectedDelete()}
+          />
         )}
       </div>
+
       <table className="userTable">
         <TableHeader
           headers={[
-            { label: '', key: undefined }, // チェックボックス列
-            { label: 'ID', key: 'id' },
+            { label: '', key: undefined },
+            { label: 'id', key: 'id' },
             { label: '名前', key: 'name' },
             { label: 'メールアドレス', key: 'email' },
             { label: 'Actions', key: undefined },
@@ -118,12 +151,8 @@ export const UserTable: React.FC<UserTableProps> = ({ users }) => {
         />
 
         <tbody>
-          {users.map((user) => (
-            <tr
-              key={user.id}
-              onClick={() => {
-                handleRowClick(user);
-              }}>
+          {currentusers.map((user) => (
+            <tr key={user.id} onClick={() => handleRowClick(user)}>
               <td onClick={(e) => handleCheckboxClick(e, user)}>
                 <Checkbox
                   id={`chk-${user.id}`}
@@ -132,14 +161,16 @@ export const UserTable: React.FC<UserTableProps> = ({ users }) => {
                   onChange={() => {}}
                 />
               </td>
-              <td>{user.id}</td>
-              <td>{user.name}</td>
-              <td>{user.email}</td>
-              <td onClick={(e) => handleActionsClick(e)}>
+              <td width={'70px'}>{user.id}</td>
+              <td width={'200px'}>{user.name}</td>
+              <td width={'400px'}>{user.email}</td>
+              <td
+                className="userActions"
+                onClick={(e) => handleActionsClick(e)}>
                 <TableMoreActions
-                  onEdit={() => console.log(`Edit user ${user.id}`)}
-                  onDelete={() => console.log(`Delete user ${user.id}`)}
-                  onDetail={() => console.log(`Detail user ${user.id}`)}
+                  onEdit={() => handleEditClick(user.id)}
+                  onDelete={() => handleDeleteClick(user.id)}
+                  onDetail={() => handleDetailClick(user.id)}
                 />
               </td>
             </tr>
@@ -147,12 +178,19 @@ export const UserTable: React.FC<UserTableProps> = ({ users }) => {
         </tbody>
       </table>
 
+      {/* Pagination */}
+      <Pagination
+        currentPage={currentPage}
+        totalPages={totalPages}
+        onPageChange={handlePageChange}
+      />
+
       {/* モーダル */}
       {isModalOpen && selectedUser && (
         <div className="modal">
           <DetailModal
             title="課題詳細"
-            asgmtInfo={getModalData(selectedUser)}
+            itemInfo={getModalData(selectedUser)}
             withAnker={false}
             onClose={handleModalClose}
           />

@@ -6,6 +6,7 @@ import { DetailModal } from './DetailModal';
 import './asgmtTable.css';
 import { useNavigate } from 'react-router-dom';
 import { Pagination } from './Pagination';
+import { Button } from '../../atoms/Button';
 
 export type Assignments = {
   id: number;
@@ -130,12 +131,12 @@ export const AsgmtTable: React.FC<AssignmentTableProps> = ({ assignments }) => {
     <>
       <div className="deleteButtonWrapper">
         {selectedIds.length > 0 && (
-          <button
-            className="deleteButton"
-            style={{ height: '50px', visibility: 'visible' }}
-            onClick={handleSelectedDelete}>
-            DELETE
-          </button>
+          <Button
+            label="Delete"
+            color="red"
+            size="medium"
+            onClick={() => handleSelectedDelete()}
+          />
         )}
       </div>
 
@@ -193,7 +194,7 @@ export const AsgmtTable: React.FC<AssignmentTableProps> = ({ assignments }) => {
         <div className="modal">
           <DetailModal
             title="課題詳細"
-            asgmtInfo={getModalData(selectedAsgmt)}
+            itemInfo={getModalData(selectedAsgmt)}
             withAnker={false}
             onClose={handleModalClose}
           />

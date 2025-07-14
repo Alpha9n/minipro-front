@@ -8,18 +8,34 @@
   overflow: hidden;
 }
 
+.deleteButtonWrapper {
+  text-align: right;
+  margin-bottom: 1rem;
+  width: 100%;
+}
+
+.deleteButtonWrapper .custom-button {
+  width: 10%;
+  justify-content: right;
+}
+
 .userTable th,
 .userTable td {
-  padding: 0.75rem 1rem;
   border: 1px solid #ddd;
   text-align: left;
   vertical-align: middle;
 }
 
 .userTable th {
-  background-color: #f0f0f0;
+  background-color: #f5f5f5;
   font-weight: 600;
   color: #333;
+  padding-left: 10px;
+}
+
+.userTable td {
+  height: 50px;
+  padding: 0 10px;
 }
 
 .userTable tr:nth-child(even) {
@@ -31,13 +47,24 @@
 }
 
 .userTable td:first-child {
+  position: relative;
   text-align: center;
   white-space: nowrap;
+  overflow: visible;
   width: 30px;
 }
 
 .userTable td:last-child {
+  position: relative;
   text-align: center;
   white-space: nowrap;
+  overflow: visible;
   width: 50px;
+}
+
+/* 3点メニュー用セル */
+.userActions {
+  position: relative;
+  text-align: center;
+  white-space: nowrap;
 }

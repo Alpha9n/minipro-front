@@ -1,5 +1,6 @@
 import React from 'react';
 import './GenerateAsgmt.css';
+import { Button } from '../../atoms/Button';
 
 interface Props {
   result: string;
@@ -26,10 +27,12 @@ export const GenerateAsgmt: React.FC<Props> = ({
 						</div> */}
 
           <div className="result-buttons">
-            <button onClick={onRegenerate} disabled={loading}>
-              {loading ? '再生成中...' : '🔁 再生成'}
-            </button>
-            <button onClick={onSave}>💾 保存</button>
+            <Button
+              label={loading ? '再生成中...' : '🔁 再生成'}
+              onClick={onRegenerate}
+              disabled={loading}
+            />
+            <Button label="保存" onClick={onSave} />
           </div>
         </div>
       </div>

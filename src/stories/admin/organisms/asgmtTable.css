@@ -9,24 +9,9 @@
 }
 
 .deleteButtonWrapper {
-  min-width: 100px;
-  display: flex;
-  justify-content: flex-end;
-}
-
-.deleteButton {
-  background-color: #c62828;
-  color: white;
-  padding: 6px 16px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-weight: bold;
-  transition: background-color 0.2s ease;
-}
-
-.deleteButton:hover {
-  background-color: #b71c1c;
+  width: 10%;
+  justify-content: right;
+  height: 40px;
 }
 
 .asgmtTable th,

@@ -28,21 +28,12 @@
 .createBtnWrapper {
   text-align: right;
   margin-bottom: 1rem;
+  width: 100%;
 }
 
-.createBtn {
-  padding: 0.6rem 1.2rem;
-  background-color: #1976d2;
-  color: #fff;
-  font-weight: bold;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.createBtn:hover {
-  background-color: #1565c0;
+.createBtnWrapper .custom-button {
+  width: 20%;
+  justify-content: right;
 }
 
 .asgmtTableWrapper {

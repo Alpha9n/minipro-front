@@ -16,7 +16,7 @@ type Story = StoryObj<typeof meta>;
 export const Asgmt: Story = {
   args: {
     title: '課題詳細情報',
-    asgmtInfo: [
+    itemInfo: [
       {
         label: 'タイトル',
         col: 'あああ',
@@ -31,7 +31,7 @@ export const Asgmt: Story = {
 export const User: Story = {
   args: {
     title: 'ユーザー詳細情報',
-    asgmtInfo: [
+    itemInfo: [
       {
         label: '名前',
         col: '大久保裕',

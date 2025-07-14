@@ -3,6 +3,7 @@ import { AsgmtTable } from '../../../stories/admin/organisms/AsgmtTable';
 import '../../../styles/asgmtManagementPage.css';
 import { useNavigate } from 'react-router-dom';
 import { AdminHeader } from '../../../stories/admin/organisms/AdminHeader';
+import { Button } from '../../../stories/atoms/Button';
 
 export type Assignment = {
   id: number;
@@ -217,9 +218,12 @@ export const AsgmtManagementPage: React.FC<AsgmtManagementPageProps> = ({
           <h2 className="asgmtTitle">課題管理画面</h2>
           <p className="asgmtDescription">課題管理用のページです</p>
           <div className="createBtnWrapper">
-            <button className="createBtn" onClick={handleCreateClick}>
-              ＋ 課題を作成
-            </button>
+            <Button
+              label="＋ 課題を作成"
+              onClick={handleCreateClick}
+              color="blue"
+              variant="solid"
+            />
           </div>
         </div>
 

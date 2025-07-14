@@ -4,12 +4,12 @@ import './detailModal.css';
 
 export interface ItemDetail {
   label: string;
-  col: string;
+  col: string | number;
 }
 
 export interface DetailProps {
   title: string;
-  asgmtInfo: ItemDetail[];
+  itemInfo: ItemDetail[];
   withAnker: boolean;
   ankerUrl?: string;
   onClose: () => void;
@@ -17,7 +17,7 @@ export interface DetailProps {
 
 export const DetailModal: React.FC<DetailProps> = ({
   title,
-  asgmtInfo,
+  itemInfo,
   withAnker,
   ankerUrl,
   onClose,
@@ -28,7 +28,7 @@ export const DetailModal: React.FC<DetailProps> = ({
         <h3>{title}</h3>
         {/* 詳細情報をリストで表示 */}
         <ul>
-          {asgmtInfo.map((item, index) => (
+          {itemInfo.map((item, index) => (
             <li key={index}>
               <label>{item.label}</label> <span>{item.col}</span>
             </li>

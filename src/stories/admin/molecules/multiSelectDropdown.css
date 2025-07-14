@@ -2,58 +2,64 @@
   position: relative;
   width: 100%;
   max-width: 475px;
-  margin-bottom: 10px;
+  margin-bottom: 16px;
 }
 
 .dropdown-label {
   display: flex;
   align-items: flex-start;
-  gap: 5px;
-  font-weight: bold;
-  color: #000;
-  align-self: stretch;
+  font-size: 14px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 4px;
 }
 
 .dropdown-box {
+  width: 100%;
+  padding: 12px 14px;
   border: 1px solid #ccc;
-  padding: 8px 12px;
+  border-radius: 6px;
   background: #fff;
-  cursor: pointer;
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
 
-  max-width: 475px;
-  width: 100%;
-  align-self: stretch;
-  border-radius: 4px;
-  background: #fff;
+.dropdown-box:hover {
+  border-color: #888;
 }
 
 .dropdown-menu {
   position: absolute;
+  top: calc(100% + 4px);
   width: 100%;
-  background: white;
+  background: #fff;
   border: 1px solid #ccc;
-  z-index: 10;
-  max-height: 200px;
+  border-radius: 6px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  max-height: 220px;
   overflow-y: auto;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  margin-top: 4px;
+  z-index: 100;
 }
 
 .dropdown-item {
   display: flex;
   align-items: center;
-  padding: 6px 12px;
+  padding: 10px 14px;
   font-size: 14px;
   cursor: pointer;
+  transition: background-color 0.2s ease;
 }
 
 .dropdown-item:hover {
-  background-color: azure;
+  background-color: #f0f8ff; /* azure だと少し薄いので見やすく変更 */
 }
 
 .arrow {
   margin-left: 10px;
+  transition: transform 0.2s ease;
+}
+
+.arrow.open {
+  transform: rotate(180deg);
 }

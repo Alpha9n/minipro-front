@@ -3,44 +3,53 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 5px;
+  gap: 6px;
+  width: 100%;
+  font-family: sans-serif;
 }
 
 .textField label {
   display: flex;
-  align-items: flex-start;
-  gap: 5px;
-  font-weight: bold;
-  color: #000;
-  align-self: stretch;
+  align-items: center;
+  font-size: 14px;
+  font-weight: 600;
+  color: #333;
+  gap: 4px;
 }
 
 .required {
   color: #ff544b;
-  font-size: 15px;
-  font-style: normal;
+  font-size: 14px;
   font-weight: 700;
-  line-height: normal;
 }
 
 .textInput {
-  max-width: 475px;
   width: 100%;
-  display: flex;
-  padding: 13px 16px;
-  align-items: flex-start;
-  align-self: stretch;
-  border-radius: 4px;
+  padding: 12px 14px;
+  font-size: 14px;
+  border-radius: 6px;
   border: 1px solid #bcc0c8;
   background: #fff;
+  transition:
+    border 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.textInput:hover {
+  border-color: #999;
+}
+
+.textInput:focus {
+  outline: none;
+  border-color: #4d90fe;
+  box-shadow: 0 0 0 2px rgba(77, 144, 254, 0.2);
 }
 
 .advice {
-  font-size: 14px;
+  font-size: 13px;
   color: #ff544b;
-  font-style: normal;
   font-weight: 400;
-  line-height: normal;
-  height: 19px;
-  align-self: stretch;
+  margin-top: 4px;
+  height: 18px;
+  line-height: 1.4;
 }
