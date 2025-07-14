@@ -69,7 +69,13 @@ export const AsgmtForm: React.FC<Props> = ({ onSubmit, loading = false }) => {
         onChange={setSelectedLanguages}
       />
 
-      <TextArea id="overview" label="概要" value={form.overview} />
+      <TextArea
+        id="overview"
+        label="概要"
+        value={form.overview}
+        name="overview"
+        onChange={handleChange}
+      />
 
       <Button
         label={loading ? '生成中...' : '課題を生成'}
