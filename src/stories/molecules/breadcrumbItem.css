@@ -1,0 +1,31 @@
+.breadcrumbItem {
+  display: inline-flex;
+  align-items: center;
+}
+
+.breadcrumbItem a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+}
+
+.breadcrumbItem:not(:first-child)::before {
+  content: '>';
+  margin: 0 10px;
+  color: #666;
+}
+
+.breadcrumbItem span {
+  color: #666;
+  font-family: Inter;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+}
+
+.breadcrumbItem a:hover span {
+  padding-bottom: 1px;
+  border-bottom: 1px solid #000;
+  line-height: 1;
+}
