@@ -1,5 +1,5 @@
 import React from 'react';
-import './GenerateAsgmt.css';
+import './generateAsgmt.css';
 import { Button } from '../../atoms/Button';
 
 interface Props {
