@@ -1,45 +1,121 @@
-import React, { useState, useEffect } from 'react';
-import Header from '../components/Header';
-import { Card } from '../components/Card';
-import './TopPage.css';
+import { useState, useEffect } from 'react';
+// import Header from '../components/Header';
+import { Card } from '../stories/molecules/Card';
+import '../styles/topPage.css';
+import { CardModal } from '../stories/orgnisms/CardModal';
 
-const TopPage = () => {
-  const [challengeProjects, setChallengeProjects] = useState([]);
-  const [createdProjects, setCreatedProjects] = useState([]);
-  const [allProjects, setAllProjects] = useState([]);
+export interface ProjectProps {
+  id: number;
+  title: string;
+  imageUrl: string;
+  desc: string;
+  alert: string;
+}
+
+export const TopPage = ({}) => {
+  const [challengeProjects, setChallengeProjects] = useState<ProjectProps[]>(
+    [],
+  );
+  const [createdProjects, setCreatedProjects] = useState<ProjectProps[]>([]);
+  const [allProjects, setAllProjects] = useState<ProjectProps[]>([]);
+  const [selectedProject, setSelectedProject] = useState<ProjectProps | null>(
+    null,
+  );
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [error, setError] = useState<Error | undefined>();
 
+  // useEffect(() => {
+  //   const fetchProjects = async () => {
+  //     try {
+  //       setLoading(true); // データ取得開始
+  //       // ここにAPIエンドポイントのURLを指定
+  //       // 実際のプロジェクトでは、これらを環境変数などから取得すると良いでしょう
+  //       const challengeRes = await fetch('/api/challenge-projects'); // 例: 挑戦できるプロジェクトのAPIエンドポイント
+  //       const createdRes = await fetch('/api/created-projects'); // 例: 作成したプロジェクトのAPIエンドポイント
+  //       const allRes = await fetch('/api/all-projects'); // 例: 全プロジェクトのAPIエンドポイント
+
+  //       if (!challengeRes.ok || !createdRes.ok || !allRes.ok) {
+  //         throw new Error('Failed to fetch projects');
+  //       }
+
+  //       const challengeData = await challengeRes.json();
+  //       const createdData = await createdRes.json();
+  //       const allData = await allRes.json();
+
+  //       setChallengeProjects(challengeData);
+  //       setCreatedProjects(createdData);
+  //       setAllProjects(allData);
+  //     } catch (err) {
+  //       setError(err as Error);
+  //       console.error('Failed to fetch projects:', err);
+  //     } finally {
+  //       setLoading(false);
+  //     }
+  //   };
+
+  //   fetchProjects();
+  // }, []);
+
+  // モックデータ挿入用
   useEffect(() => {
-    const fetchProjects = async () => {
-      try {
-        setLoading(true); // データ取得開始
-        // ここにAPIエンドポイントのURLを指定
-        // 実際のプロジェクトでは、これらを環境変数などから取得すると良いでしょう
-        const challengeRes = await fetch('/api/challenge-projects'); // 例: 挑戦できるプロジェクトのAPIエンドポイント
-        const createdRes = await fetch('/api/created-projects'); // 例: 作成したプロジェクトのAPIエンドポイント
-        const allRes = await fetch('/api/all-projects'); // 例: 全プロジェクトのAPIエンドポイント
+    const mockChallengeProjects = [
+      {
+        id: 1,
+        imageUrl: 'https://source.unsplash.com/featured/?code',
+        title: 'React × TypeScript チャレンジ',
+        desc: 'ReactとTypeScriptを使ってTodoアプリを構築する課題です。',
+        alert: '',
+      },
+      {
+        id: 2,
+        imageUrl: 'https://source.unsplash.com/featured/?design',
+        title: 'UIデザイン模写チャレンジ',
+        desc: 'Figmaデザインを元に、HTML/CSSでコーディングしてください。',
+        alert: '',
+      },
+    ];
 
-        if (!challengeRes.ok || !createdRes.ok || !allRes.ok) {
-          throw new Error('Failed to fetch projects');
-        }
+    const mockCreatedProjects = [
+      {
+        id: 3,
+        imageUrl: 'https://source.unsplash.com/featured/?teamwork',
+        title: 'グループ開発：シフト管理アプリ',
+        desc: 'バイトの希望シフト提出〜LINE通知までを管理するアプリ。',
+        alert: '',
+      },
+      {
+        id: 4,
+        imageUrl: 'https://source.unsplash.com/featured/?calendar',
+        title: 'カレンダーアプリ',
+        desc: '予定の追加・削除ができるフロントエンドアプリケーション。',
+        alert: '',
+      },
+    ];
 
-        const challengeData = await challengeRes.json();
-        const createdData = await createdRes.json();
-        const allData = await allRes.json();
+    const mockAllProjects = [
+      ...mockChallengeProjects,
+      ...mockCreatedProjects,
+      {
+        id: 5,
+        imageUrl: 'https://source.unsplash.com/featured/?ai',
+        title: 'AI API活用チャレンジ',
+        desc: 'OpenAIのAPIを使ってチャットボットを作成する課題です。',
+        alert: '前提スキルチェック未達成',
+      },
+      {
+        id: 6,
+        imageUrl: 'https://source.unsplash.com/featured/?database',
+        title: 'データベース設計入門',
+        desc: 'ER図からMySQLのテーブル設計を学ぶ基礎課題です。',
+        alert: '前提スキルチェック未達成',
+      },
+    ];
 
-        setChallengeProjects(challengeData);
-        setCreatedProjects(createdData);
-        setAllProjects(allData);
-      } catch (err) {
-        setError(err);
-        console.error('Failed to fetch projects:', err);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchProjects();
+    setChallengeProjects(mockChallengeProjects);
+    setCreatedProjects(mockCreatedProjects);
+    setAllProjects(mockAllProjects);
+    setLoading(false);
   }, []);
 
   if (loading) {
@@ -54,9 +130,16 @@ const TopPage = () => {
     );
   }
 
+  // カードクリックでモーダル表示
+  const handleCardClick = (project: ProjectProps) => {
+    console.log('CardClick');
+    setSelectedProject(project);
+    setIsModalOpen(true);
+  };
+
   return (
     <div className="top-page-container">
-      <Header />
+      {/* <Header /> */}
       <main className="main-content">
         <div className="left-column">
           <section className="project-section">
@@ -71,6 +154,7 @@ const TopPage = () => {
                     content={project.desc}
                     isLocked={!!project.alert}
                     advice={project.alert}
+                    onclick={() => handleCardClick(project)}
                   />
                 ))
               ) : (
@@ -91,6 +175,7 @@ const TopPage = () => {
                     content={project.desc}
                     isLocked={!!project.alert}
                     advice={project.alert}
+                    onclick={() => handleCardClick(project)}
                   />
                 ))
               ) : (
@@ -113,6 +198,7 @@ const TopPage = () => {
                     content={project.desc}
                     isLocked={!!project.alert}
                     advice={project.alert}
+                    onclick={() => handleCardClick(project)}
                   />
                 ))
               ) : (
@@ -127,8 +213,24 @@ const TopPage = () => {
           </div>
         </div>
       </main>
+
+      {/* モーダル表示 */}
+      {isModalOpen && selectedProject && (
+        <CardModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
+          <div className="modal">
+            <h2>{selectedProject.title}</h2>
+            <img
+              src={selectedProject.imageUrl}
+              alt={selectedProject.title}
+              style={{ width: '100%', maxHeight: 200, objectFit: 'cover' }}
+            />
+            <p>{selectedProject.desc}</p>
+            {selectedProject.alert && (
+              <p style={{ color: 'red' }}>{selectedProject.alert}</p>
+            )}
+          </div>
+        </CardModal>
+      )}
     </div>
   );
 };
-
-export default TopPage;
