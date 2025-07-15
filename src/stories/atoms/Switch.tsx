@@ -1,35 +1,43 @@
-import React, { useState } from 'react';
-import './switch.css';
+// ファイル: src/stories/atoms/Switch.tsx
+
+import React from 'react';
+import styles from './Switch.module.css';
 
 export interface SwitchProps {
-  id: string;
+  /** ON/OFF の状態 */
   checked: boolean;
-  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  /** 操作禁止フラグ */
+  disabled?: boolean;
+  /** 切り替え時に呼ばれる */
+  onChange: (checked: boolean) => void;
+  label?: string;
 }
 
+/**
+ * Switch Atom（純粋 CSS 実装）
+ */
 export const Switch: React.FC<SwitchProps> = ({
-  id,
-  checked = false,
+  checked,
+  disabled = false,
   onChange,
+  label = '',
 }) => {
-  const [isEnable, setIsEnable] = useState(checked);
-
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setIsEnable(event.target.checked);
-    onChange?.(event);
-  };
-
   return (
-    <div className="SwitchArea">
-      <label className="switch">
-        <input
-          type="checkbox"
-          id={id}
-          checked={isEnable}
-          onChange={handleChange}
-        />
-        <span className="slider"></span>
-      </label>
-    </div>
+    <label className={styles.label}>
+      <input
+        type="checkbox"
+        className={styles.input}
+        checked={checked}
+        disabled={disabled}
+        onChange={(e) => onChange(e.target.checked)}
+        aria-checked={checked}
+        aria-label={label}
+      />
+      <span className={styles.track}>
+        <span className={styles.thumb} />
+      </span>
+    </label>
   );
 };
+
+export default Switch;
