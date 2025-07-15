@@ -1,6 +1,7 @@
 import React from 'react';
 import './StepList.css';
 import { Button } from '../atoms/Button';
+import { useNavigate } from 'react-router-dom';
 
 interface Step {
   number: number;
@@ -10,6 +11,8 @@ interface Step {
 }
 
 export const StepList: React.FC = () => {
+  const navigate = useNavigate();
+
   const steps: Step[] = [
     {
       number: 1,
@@ -38,6 +41,12 @@ export const StepList: React.FC = () => {
     },
   ];
 
+  const handleClick = (step: Step) => {
+    navigate(`/editor/${step.number}`, {
+      state: step,
+    });
+  };
+
   return (
     <div className="step-list-wrapper">
       {steps.map((step) => (
@@ -52,7 +61,7 @@ export const StepList: React.FC = () => {
               label="作 成"
               color="green"
               variant={step.active ? 'solid' : 'outline'}
-              onClick={() => console.log(`STEP${step.number} clicked`)}
+              onClick={() => handleClick(step)}
               disabled={!step.active}
             />
           </div>
