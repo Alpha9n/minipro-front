@@ -26,7 +26,7 @@ export const TopPage = () => {
   );
   const [loading, setLoading] = useState(true);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [error, setError] = useState<Error | undefined>();
+  const [error] = useState<Error | undefined>();
 
   // useEffect(() => {
   //   const fetchProjects = async () => {
