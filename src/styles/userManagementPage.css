@@ -1,0 +1,46 @@
+.userPage {
+  overflow: visible !important;
+  position: relative;
+  padding: 2rem;
+  background-color: #f9fafb;
+  min-height: 100vh;
+  font-family: 'Segoe UI', Roboto, sans-serif;
+  color: #333;
+  width: 980px;
+}
+
+.userPageHeader {
+  margin-bottom: 1.5rem;
+}
+
+.userTitle {
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.userDescription {
+  font-size: 1rem;
+  color: #666;
+  margin-bottom: 1rem;
+}
+
+.createBtnWrapper {
+  text-align: right;
+  margin-bottom: 1rem;
+  width: 100%;
+}
+
+.createBtnWrapper .custom-button {
+  width: 20%;
+  justify-content: right;
+}
+
+.userTableWrapper {
+  position: relative;
+  overflow: visible !important;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 1rem;
+}

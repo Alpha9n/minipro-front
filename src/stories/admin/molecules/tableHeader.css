@@ -1,0 +1,15 @@
+.tableHeader {
+  border-bottom: 2px solid #ddd;
+}
+
+.tableHeaderCell {
+  padding: 12px 0;
+  font-weight: bold;
+  font-size: 14px;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.tableHeaderCell td:last-child {
+  text-align: center;
+}

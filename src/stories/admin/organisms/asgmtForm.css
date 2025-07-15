@@ -1,0 +1,17 @@
+.form-container {
+  margin-bottom: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 500px;
+  margin: 0 auto;
+}
+
+#overview {
+  width: 100%;
+}
+
+.form-container button:disabled {
+  background-color: #aaa;
+  cursor: not-allowed;
+}
