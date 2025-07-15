@@ -29,6 +29,7 @@ export const Switch: React.FC<SwitchProps> = ({
         disabled={disabled}
         onChange={(e) => onChange(e.target.checked)}
         aria-checked={checked}
+        aria-label={label}
       />
       <span className={styles.track}>
         <span className={styles.thumb} />
