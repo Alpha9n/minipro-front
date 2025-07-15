@@ -10,6 +10,7 @@ export interface SwitchProps {
   disabled?: boolean;
   /** 切り替え時に呼ばれる */
   onChange: (checked: boolean) => void;
+  label?: string;
 }
 
 /**
@@ -19,6 +20,7 @@ export const Switch: React.FC<SwitchProps> = ({
   checked,
   disabled = false,
   onChange,
+  label = '',
 }) => {
   return (
     <label className={styles.label}>
