@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 // import Header from '../components/Header';
 import { Card } from '../stories/molecules/Card';
-import '../styles/topPage.css';
+import './topPage.css';
 import { CardModal } from '../stories/orgnisms/CardModal';
 import { StepList } from '../stories/molecules/StepList';
 

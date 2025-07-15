@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Editor from '@monaco-editor/react';
-import '../styles/editorPage.css';
+import './editorPage.css';
 import { Button } from '../stories/atoms/Button';
 
 const dummyCode = `#include <stdio.h>
