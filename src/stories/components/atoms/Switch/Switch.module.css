@@ -37,6 +37,11 @@
     transition: transform 0.2s;
   }
   
+  /* フォーカス時の視覚的なインジケーター */
+  .input:focus + .track {
+    box-shadow: 0 0 0 3px rgba(33, 150, 243, 0.5);
+  }
+  
   /* チェック時の軌道色とノブの位置変化 */
   .input:checked + .track {
     background-color: #2196f3;
