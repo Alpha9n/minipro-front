@@ -1,4 +1,4 @@
-// ファイル: src/components/atoms/Switch/Switch.tsx
+// ファイル: src/stories/atoms/Switch.tsx
 
 import React from 'react';
 import styles from './Switch.module.css';
