@@ -35,6 +35,7 @@
   width: 50%;
   /* max-width: 240px; */
   padding: 8px 0;
+  text-align: left;
 }
 
 .step-title {

@@ -159,7 +159,7 @@ export const TopPage = () => {
         <div className="left-column">
           <section className="project-section">
             <h2 className="section-title">あなたが挑戦できるプロジェクト</h2>
-            <div className="card-grid">
+            <div className="card-grid-1">
               {challengeProjects.length > 0 ? (
                 challengeProjects.map((project) => (
                   <Card
@@ -180,7 +180,7 @@ export const TopPage = () => {
 
           <section className="project-section">
             <h2 className="section-title">作成したプロジェクト</h2>
-            <div className="card-grid">
+            <div className="card-grid-1">
               {createdProjects.length > 0 ? (
                 createdProjects.map((project) => (
                   <Card
@@ -203,7 +203,7 @@ export const TopPage = () => {
         <div className="right-column">
           <section className="project-section">
             <h2 className="section-title">プロジェクト一覧</h2>
-            <div className="card-grid">
+            <div className="card-grid-2">
               {allProjects.length > 0 ? (
                 allProjects.map((project) => (
                   <Card
@@ -220,12 +220,12 @@ export const TopPage = () => {
                 <p>プロジェクトがありません。</p>
               )}
             </div>
+            <div className="view-all-button-container">
+              <button className="view-all-button">
+                すべてのプロジェクトを見る →
+              </button>
+            </div>
           </section>
-          <div className="view-all-button-container">
-            <button className="view-all-button">
-              すべてをプロジェクトを見る →
-            </button>
-          </div>
         </div>
       </main>
 
@@ -247,12 +247,12 @@ export const TopPage = () => {
               <div className="modal-right">
                 <p>{selectedProject.desc}</p>
                 <dl>
-                  <strong>使用言語</strong>
-                  {selectedProject.language}
+                  <dt>使用言語</dt>
+                  <dd>{selectedProject.language}</dd>
                 </dl>
                 <dl>
-                  <strong>受講講義</strong>
-                  {selectedProject.material}
+                  <dt>受講講義</dt>
+                  <dd>{selectedProject.material}</dd>
                 </dl>
               </div>
             </div>
