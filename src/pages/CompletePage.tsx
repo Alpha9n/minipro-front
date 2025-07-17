@@ -1,6 +1,6 @@
 // src/pages/CompletePage.tsx
 import React, { useEffect, useState } from 'react';
-import './CompletePage.css';
+import './completePage.css';
 import { Card } from '../stories/molecules/Card';
 import { StepList } from '../stories/molecules/StepList';
 import { CardModal } from '../stories/orgnisms/CardModal';
