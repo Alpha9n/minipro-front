@@ -5,6 +5,8 @@ import './topPage.css';
 import { CardModal } from '../stories/orgnisms/CardModal';
 import { StepList } from '../stories/molecules/StepList';
 
+import type { Step } from '../stories/molecules/StepList';
+
 export interface ProjectProps {
   id: number; // id
   title: string; // タイトル
@@ -15,7 +17,49 @@ export interface ProjectProps {
   material: string; // 受講教材
 }
 
-export const TopPage = () => {
+const steps4: Step[] = [
+  {
+    number: 1,
+    title: 'データベースの構築をしてみよう',
+    description:
+      'このステップではユーザーの身長・体重・BMI・名前を保存するデータベースの設計・構築をします。',
+    active: true,
+    name: 'STEP1',
+  },
+  {
+    number: 2,
+    title: '計算用の関数を作ってみよう',
+    description:
+      'このステップでは、身長・体重を受け取ってBMIの値を返す関数を作成します。',
+    name: 'STEP2',
+  },
+  {
+    number: 3,
+    title: '画面に表示する部分を作ってみよう',
+    description:
+      'このステップでは、一般的にフロントエンドと呼ばれる部分の構築をします。',
+    name: 'STEP3',
+  },
+  {
+    number: 4,
+    title: '画面のデザインを調整しよう',
+    description:
+      'このステップでは、CSSを調整して画面上のデザインを調整します。',
+    name: 'STEP4',
+  },
+];
+
+const singleStep: Step[] = [
+  {
+    number: 1,
+    title: 'ToDoアプリを作ってみよう',
+    description: 'タスクの登録・編集・削除ができ、完了未完了の状態管理も行う',
+    active: true,
+    name: 'タスク',
+  },
+];
+
+export const TopPage: React.FC = () => {
   const [challengeProjects, setChallengeProjects] = useState<ProjectProps[]>(
     [],
   );
@@ -65,16 +109,16 @@ export const TopPage = () => {
     const mockChallengeProjects = [
       {
         id: 1,
-        imageUrl: 'https://source.unsplash.com/featured/?code',
-        title: 'React × TypeScript チャレンジ',
-        desc: 'ReactとTypeScriptを使ってTodoアプリを構築する課題です。',
+        imageUrl: '/img/image.png',
+        title: 'ToDoリスト作成',
+        desc: 'JavaScriptを使ってTodoアプリを構築する課題です。',
         alert: '',
-        language: 'React, TypeScript',
-        material: 'React入門：ToDoアプリを作ってみよう',
+        language: 'JavaScript',
+        material: 'JavaScript入門：ToDoアプリを作ってみよう',
       },
       {
         id: 2,
-        imageUrl: 'https://source.unsplash.com/featured/?design',
+        imageUrl: '/img/image.png',
         title: 'UIデザイン模写チャレンジ',
         desc: 'Figmaデザインを元に、HTML/CSSでコーディングしてください。',
         alert: '',
@@ -86,7 +130,7 @@ export const TopPage = () => {
     const mockCreatedProjects = [
       {
         id: 3,
-        imageUrl: 'https://source.unsplash.com/featured/?teamwork',
+        imageUrl: '/img/image.png',
         title: 'グループ開発：シフト管理アプリ',
         desc: 'バイトの希望シフト提出〜LINE通知までを管理するアプリ。',
         alert: '',
@@ -95,7 +139,7 @@ export const TopPage = () => {
       },
       {
         id: 4,
-        imageUrl: 'https://source.unsplash.com/featured/?calendar',
+        imageUrl: '/img/image.png',
         title: 'カレンダーアプリ',
         desc: '予定の追加・削除ができるフロントエンドアプリケーション。',
         alert: '',
@@ -109,7 +153,7 @@ export const TopPage = () => {
       ...mockCreatedProjects,
       {
         id: 5,
-        imageUrl: 'https://source.unsplash.com/featured/?ai',
+        imageUrl: '/img/image.png',
         title: 'AI API活用チャレンジ',
         desc: 'OpenAIのAPIを使ってチャットボットを作成する課題です。',
         alert: '前提スキルチェック未達成',
@@ -118,7 +162,7 @@ export const TopPage = () => {
       },
       {
         id: 6,
-        imageUrl: 'https://source.unsplash.com/featured/?database',
+        imageUrl: '/img/image.png',
         title: 'データベース設計入門',
         desc: 'ER図からMySQLのテーブル設計を学ぶ基礎課題です。',
         alert: '前提スキルチェック未達成',
@@ -151,6 +195,10 @@ export const TopPage = () => {
     setSelectedProject(project);
     setIsModalOpen(true);
   };
+
+  // 条件によってどちらを表示するか
+  const stepsToShow =
+    selectedProject && selectedProject.id % 2 === 0 ? steps4 : singleStep;
 
   return (
     <div className="top-page-container">
@@ -262,7 +310,7 @@ export const TopPage = () => {
             )}
             {/* ステップリスト表示位置 */}
             <div className="step-section">
-              <StepList />
+              <StepList steps={stepsToShow} />
             </div>
           </CardModal>
         )}
