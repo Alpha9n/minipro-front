@@ -1,0 +1,15 @@
+.menuButton {
+  /* background-color: lightgray; */
+  display: block;
+  width: 50px;
+  text-align: left;
+  padding: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  border-radius: 3px;
+  color: #333;
+}
+
+.menuButton:hover {
+  background-color: rgb(174, 172, 172);
+}

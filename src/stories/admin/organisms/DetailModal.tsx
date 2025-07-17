@@ -1,0 +1,48 @@
+import React from 'react';
+import ReactDOM from 'react-dom';
+import './detailModal.css';
+
+export interface ItemDetail {
+  label: string;
+  col: string | number;
+}
+
+export interface DetailProps {
+  title: string;
+  itemInfo: ItemDetail[];
+  withAnker: boolean;
+  ankerUrl?: string;
+  onClose: () => void;
+}
+
+export const DetailModal: React.FC<DetailProps> = ({
+  title,
+  itemInfo,
+  withAnker,
+  ankerUrl,
+  onClose,
+}) => {
+  return ReactDOM.createPortal(
+    <div className="modalOverlay" onClick={onClose}>
+      <div className="modalContent" onClick={(e) => e.stopPropagation()}>
+        <h3>{title}</h3>
+        {/* 詳細情報をリストで表示 */}
+        <ul>
+          {itemInfo.map((item, index) => (
+            <li key={index}>
+              <label>{item.label}</label> <span>{item.col}</span>
+            </li>
+          ))}
+        </ul>
+
+        {/* 詳細画面があるなら詳細ページへ */}
+        {withAnker && (
+          <div className="more">
+            <a href={ankerUrl || '#'}>詳細画面へ</a>
+          </div>
+        )}
+      </div>
+    </div>,
+    document.body,
+  );
+};
